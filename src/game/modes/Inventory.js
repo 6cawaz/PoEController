@@ -15,6 +15,8 @@ var SignatureDetection = require('../SignatureDetection');
 var Window = require('../Window');
 var Input = require('../Input');
 
+var Logger = require('../Logger');
+
 var AreaId = {
 	FLASKS_AREA: 0,
 	EQUIPMENT_AREA: 1,
@@ -120,28 +122,35 @@ function LeaveCurrentSubSection(TargetArea) {
 }
 
 function EnterCurrentSubSection() {
+	
+	var area = null;
+	
 	switch (CurrentSubSection) {
 		case GAME_MODE.REWARD_SCREEN:
-			EnterRewardArea();
+			area = AreaId.REWARDS;
 			break;
 		case GAME_MODE.CRAFT_SCREEN:
-			EnterCraftArea();
+			area = AreaId.CRAFT;
 			break;
 		case GAME_MODE.DIVINATION_CARD_SCREEN: /* NOT YET IMPLEMENTED */
-			EnterDivinationCardArea();
+			area = AreaId.DIVINATION_CARD;
 			break;
 		case GAME_MODE.STASH:
-			EnterStashArea();
+			area = AreaId.STASH;
 			break;
 		case GAME_MODE.SELL:
-			EnterSellArea();
+			area = AreaId.SELL;
 	}
+	
+	if(area !== null) {
+		ChangeActiveInputArea(area);
+	} 
 }
 
 function ChangeIntoSubSection(mode) {
 	CurrentSubSection = mode;
 	if (CurrentSubSection !== null) {
-		window.updateGameOverlay(CurrentSubSection);
+		//window.updateGameOverlay(CurrentSubSection);
 	}
 }
 
@@ -173,7 +182,7 @@ function ChangeActiveInputArea(mode) {
 		case AreaId.SELL:
 			SET_AREA_POSITION_CB = Sell.setPosition;
 			break;
-		case AreaId.SELL:
+		case AreaId.STASH:
 			SET_AREA_POSITION_CB = Stash.setPosition;
 			break;
 	}

@@ -5,8 +5,8 @@ var GAME_MODE = require('./Enums').GAME_MODE;
 var CurrentMode = null;
 
 function SubSection(mode) {
-	if (typeof CurrentMode.SubSection === "function") {
-		CurrentMode.SubSection(mode);
+	if (typeof CurrentMode.subSection === "function") {
+		CurrentMode.subSection(mode);
 	}
 }
 

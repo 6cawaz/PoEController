@@ -112,6 +112,12 @@ function SetSubsigs(mode) {
 		sigs = inventorySignatures;
 	}
 	
+	if(sigs !== null) {
+		Logger.info("setting subsigs");
+	} else {
+		Logger.info("didnt found subsigs");
+	}
+	
 	TRANSIENT_SIGNATURES = sigs;
 }
 
