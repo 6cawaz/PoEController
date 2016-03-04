@@ -1,4 +1,8 @@
+/* global menuWindow */
+
 (function() {
+
+	var EXPORTED_INPUT_MODES = require('../game/Behaviors').exported;
 
 	var xboxImg = document.getElementById('xbox-img');
 	var ps3Img = document.getElementById('ps3-img');
@@ -7,7 +11,6 @@
 	var ctx = menuCanvas.getContext('2d');
 
 	var LABEL_IDS = {
-
 		DPAD_UP: 'button-dpad-up',
 		DPAD_LEFT: 'button-dpad-left',
 		DPAD_RIGHT: 'button-dpad-right',
@@ -81,8 +84,8 @@
 	
 	function drawControllerReferencemenuCanvas(op) {
 		
-		menuCanvas.width = window.innerWidth;
-		menuCanvas.height = window.innerHeight;
+		menuCanvas.width = menuWindow.window.innerWidth;
+		menuCanvas.height = menuWindow.window.innerHeight;
 		
 		ctx.clearRect(0, 0, menuCanvas.width, menuCanvas.height);
 		
@@ -96,8 +99,8 @@
 
 	function drawInputLine(coords, elementId) {
 	
-		var iX = coords[0] * window.innerWidth;
-		var iY = coords[1] * window.innerHeight;
+		var iX = coords[0] * menuCanvas.width;
+		var iY = coords[1] * menuCanvas.height;
 		
 		var domCoords = getElementCenterPosition(elementId);
 		
