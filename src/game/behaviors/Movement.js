@@ -9,7 +9,7 @@ function move(cb) {
 	var aspectFix;
 
 	if (globalMoveRadius === null) {
-		R = Window.height * 0.0908;
+		R = Window.height * 0.1050;
 		aspectFix = 1;
 	} else {
 		R = globalMoveRadius;
