@@ -91,6 +91,7 @@ function ActionKeyUp(key, behaviorReference) {
 var ActionRepeatTimestamps = {};
 
 function ActivateKey(keys, reference, behaviorReference, index, pressed, skipKeyUp) {
+	
 	var timestamp = new Date().getTime();
 
 	if (keys[index]) {
@@ -99,9 +100,9 @@ function ActivateKey(keys, reference, behaviorReference, index, pressed, skipKey
 
 		var behaviorIndex = null;
 
-		if (behavior instanceof Array && behavior.length > 0 && typeof behaviors[behavior[0]] === "function") {
+		if (behavior.length > 0 && (typeof behaviors[behavior[0]]).charAt(0) === "f") {
 			behaviorIndex = behavior[0];
-		} else if (!(behavior instanceof Array) || !behaviors[behavior[0]]) {
+		} else if (!behaviors[behavior[0]]) {
 			behaviorIndex = "arpg.nothing";
 		}
 
@@ -147,7 +148,8 @@ function MoveThumbstick(DataX, DataY, Max, Threshold, IfCallback, ElseCallback) 
 	} else {
 		ElseCallback();
 	}
-};
+}
+;
 
 var RIGHT_THUMBSTICK_THRESHOLD = 0.16;
 

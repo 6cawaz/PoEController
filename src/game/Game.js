@@ -28,24 +28,12 @@ var SignatureDetection = require('./SignatureDetection');
 
 var RightThumbstickMouseInterval = null;
 
-function PollGamepadEvents() {
-	RightThumbstickMouseInterval = setInterval(function () {
-
-		if (LastInputData !== null) {
-			Input.rightThumbstick(LastInputData);
-			Mode.solveInput(LastInputData);
-		}
-
-	}, Enums.GLOBAL_INTERVAL);
-}
-
 var LastInputData = null;
 
 function ControllerListener(data) {
-	LastInputData = data;
+	Input.rightThumbstick(data);
+	Mode.solveInput(data);
 }
-
-var cbInitGame = null;
 
 function StartControllerListener(callbackInitGame) {
 	Controller.addDataListener(ControllerListener);
@@ -54,8 +42,6 @@ function StartControllerListener(callbackInitGame) {
 		SignatureDetection.init(GAME_MODE.ARPG);
 		
 		SignatureDetection.startDetection();
-
-		PollGamepadEvents();
 
 		exec("start steam://rungameid/238960", function (error, stdout, stderr) {
 			console.log(stdout);

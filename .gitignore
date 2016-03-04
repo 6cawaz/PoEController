@@ -2,3 +2,5 @@ node_modules
 bin
 build/config.gyp
 nbproject
+output.log
+npm-debug.log

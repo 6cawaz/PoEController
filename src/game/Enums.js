@@ -1,4 +1,4 @@
-var GLOBAL_INTERVAL = 15;
+var GLOBAL_INTERVAL = 5;
 
 var GAME_MODE = {
 	DEBUG: 0,
